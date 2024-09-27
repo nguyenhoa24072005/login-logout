@@ -5,11 +5,13 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+
+// Cấu hình CORS
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: "http://localhost:3000", // Cho phép truy cập từ frontend chạy trên cổng 3000
+    methods: ["GET", "POST", "PUT", "DELETE"], // Các phương thức HTTP được phép
+    allowedHeaders: ["Content-Type", "Authorization"], // Các headers được phép
   })
 );
 
@@ -31,10 +33,3 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-app.use(
-  cors({
-    origin: "http://localhost:3000", // Cho phép truy cập từ frontend chạy trên cổng 3000
-    methods: ["GET", "POST", "PUT", "DELETE"], // Các phương thức HTTP được phép
-    allowedHeaders: ["Content-Type", "Authorization"], // Các headers được phép
-  })
-);
